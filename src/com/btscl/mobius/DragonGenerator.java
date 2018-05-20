@@ -66,4 +66,18 @@ public class DragonGenerator implements Generator
 	{
 		// No action required
 	}
+
+	@Override
+	public boolean isFinished()
+	{
+		// Go forever!
+		return false;
+	}
+	
+	@Override
+	public long getSleepMillis()
+	{
+		return 10;
+	}
+
 }

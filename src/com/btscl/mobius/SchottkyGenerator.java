@@ -46,7 +46,7 @@ public class SchottkyGenerator implements Generator
 		
 		g.getGraphics().setColor(col);
 		List<RiemannCircle> nextPlotList = new ArrayList<>();
-		if(plotList.isEmpty())
+		if(isFinished())
 		{
 			System.out.println("Finished!");
 		}
@@ -101,5 +101,17 @@ public class SchottkyGenerator implements Generator
 				new ComplexImagePlot(gen); // Let the constructor do the job
 			}
 		});
+	}
+
+	@Override
+	public boolean isFinished()
+	{
+		return plotList.isEmpty();
+	}
+
+	@Override
+	public long getSleepMillis()
+	{
+		return 10;
 	}
 }

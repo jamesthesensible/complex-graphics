@@ -11,7 +11,11 @@ import org.apache.commons.math3.complex.Complex;
 
 public class ComplexGraphics
 {
+	private static Color BACKGROUND = Color.WHITE;
+	
 	private Graphics2D g;
+	private int width;
+	private int height;
 	private int centreX;
 	private int centreY;
 	private double scale;
@@ -25,6 +29,8 @@ public class ComplexGraphics
 	public ComplexGraphics(Graphics2D g, int width, int height, double scale, Mobius transform)
 	{
 		this.g = g;
+		this.width = width;
+		this.height = height;
 		this.centreX = width/2;
 		this.centreY = height/2;
 		this.scale = scale;
@@ -84,6 +90,12 @@ public class ComplexGraphics
 	{
 		RiemannCircle transformedCircle = transform.mapCircle(circle);
 		return transformedCircle.getRadius() * scale;
+	}
+	
+	public void reset()
+	{
+		g.setColor(BACKGROUND);
+		g.fillRect(0, 0, width, height);
 	}
 
 	

@@ -17,8 +17,6 @@ import javax.swing.SwingUtilities;
 
 public class ComplexImagePlot extends JFrame
 {
-	// Define constants for the various dimensions
-	public static final double SCALE = 200.0;
 	public static final Color LINE_COLOR = Color.BLACK;
 
 	private ImagePanel imagePanel;
@@ -51,7 +49,30 @@ public class ComplexImagePlot extends JFrame
 				requestFocus(); // change the focus to JFrame to receive KeyEvent
 			}
 		});
+		JButton btnAnimate = new JButton("Animate");
+		btnPanel.add(btnAnimate);
+		btnAnimate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt)
+			{
+				while(!generator.isFinished())
+				{
+					iterate();
+					imagePanel.repaint();
+					try
+					{
+						Thread.sleep(generator.getSleepMillis());
+					}
+					catch (InterruptedException e) 
+					{
+						// Boo hoo
+					}
+				}
+				imagePanel.repaint();
+				requestFocus(); // change the focus to JFrame to receive KeyEvent
+			}
+		});
 
+		
 		// Set up a custom drawing JPanel
 		imagePanel = new ImagePanel();
 		imagePanel.setPreferredSize(new Dimension(ImagePanel.WIDTH, ImagePanel.HEIGHT));
