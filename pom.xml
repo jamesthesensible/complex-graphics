@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion> 
+  <groupId>com.github.jamesthesensible</groupId>
+  <artifactId>complex-graphics</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  <packaging>jar</packaging> 
+  <name>Complex Graphics</name>
+  <url>https://github.com/jamesthesensible/complex-graphics</url>
+
+  <repositories>
+    <repository>
+      <id>jai-imageio</id>
+      <name>Java Advanced Imaging for ImageIO</name>
+      <url>http://maven.geotoolkit.org</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases> 
+    </repository> 
+    <repository>
+      <id>oss.sonatype.org</id>
+      <name>Sonatype Snapshot Repository</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <dependencies>
+      <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-math3 -->
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-math3</artifactId>
+        <version>3.6.1</version>
+      </dependency>
+    
+      <dependency>
+        <groupId>javax.media</groupId>
+        <artifactId>jai_imageio</artifactId>
+        <version>1.1</version>
+      </dependency>
+  
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.12</version>
+     </dependency>
+
+     <dependency>
+       <groupId>com.github.dragon66</groupId>
+       <artifactId>icafe</artifactId>
+       <version>1.1-SNAPSHOT</version>
+     </dependency>
+  
+  </dependencies>
+
+
+</project>
+
