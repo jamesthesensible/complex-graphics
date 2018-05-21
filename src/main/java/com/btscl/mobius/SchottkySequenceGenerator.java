@@ -55,8 +55,6 @@ public class SchottkySequenceGenerator implements Generator
 		schottkyList.add(transB);
 		schottkyList.add(transAInv);
 		schottkyList.add(transBInv);
-
-
 		
 		List<RiemannCircle> plotList = new ArrayList<>();
 		plotList.add(c1);
@@ -124,13 +122,13 @@ public class SchottkySequenceGenerator implements Generator
 	@Override
 	public boolean isFinished()
 	{
-		return tweakAngle > (2.0 * Math.PI);
+		return tweakAngle > (4.0 * Math.PI + minTweakInc);
 	}
 	
 	@Override
 	public long getSleepMillis()
 	{
-		return 10;
+		return 30;
 	}
 
 }

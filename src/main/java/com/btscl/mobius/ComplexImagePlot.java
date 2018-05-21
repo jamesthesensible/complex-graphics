@@ -20,9 +20,41 @@ public class ComplexImagePlot extends JFrame
 	public static final Color LINE_COLOR = Color.BLACK;
 
 	private ImagePanel imagePanel;
-	
+
 	private Generator generator;
-	
+
+	private Runnable animate = new Runnable() {
+		@Override
+		public void run()
+		{
+			while (!generator.isFinished())
+			{
+
+				iterate();
+				imagePanel.repaint();
+				try
+				{
+					Thread.sleep(generator.getSleepMillis());
+				}
+				catch (InterruptedException e)
+				{
+					// Boo hoo
+				}
+			}
+			SwingUtilities.invokeLater(imageRepaint);
+		}
+	};
+
+	private Runnable imageRepaint = new Runnable() {
+		@Override
+		public void run()
+		{
+			imagePanel.repaint();
+			requestFocus(); // change the focus to JFrame to receive KeyEvent
+
+		}
+	};
+
 	public ComplexImagePlot(Generator generator)
 	{
 		this.generator = generator;
@@ -54,25 +86,10 @@ public class ComplexImagePlot extends JFrame
 		btnAnimate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt)
 			{
-				while(!generator.isFinished())
-				{
-					iterate();
-					imagePanel.repaint();
-					try
-					{
-						Thread.sleep(generator.getSleepMillis());
-					}
-					catch (InterruptedException e) 
-					{
-						// Boo hoo
-					}
-				}
-				imagePanel.repaint();
-				requestFocus(); // change the focus to JFrame to receive KeyEvent
+				new Thread(animate).start();
 			}
 		});
 
-		
 		// Set up a custom drawing JPanel
 		imagePanel = new ImagePanel();
 		imagePanel.setPreferredSize(new Dimension(ImagePanel.WIDTH, ImagePanel.HEIGHT));
@@ -103,14 +120,13 @@ public class ComplexImagePlot extends JFrame
 		requestFocus(); // set the focus to JFrame to receive KeyEvent
 
 	}
-	
-	
+
 	public void iterate()
 	{
 		ComplexGraphics g = imagePanel.getComplexGraphics(generator.getTransform());
 		generator.iterate(g);
 	}
-	
+
 	// The entry main() method
 	public static void main(String[] args)
 	{
@@ -125,5 +141,3 @@ public class ComplexImagePlot extends JFrame
 		});
 	}
 }
-
-

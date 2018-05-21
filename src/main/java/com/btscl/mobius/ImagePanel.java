@@ -10,7 +10,7 @@ public class ImagePanel extends JPanel
 {
 	private BufferedImage img;
 	public static int WIDTH = 700;
-	public static int HEIGHT = 500;
+	public static int HEIGHT = 700;
 	public static double COMPLEX_SCALE = 200.0;
 	
 	public ImagePanel()

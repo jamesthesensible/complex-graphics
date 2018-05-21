@@ -112,6 +112,6 @@ public class SchottkyGenerator implements Generator
 	@Override
 	public long getSleepMillis()
 	{
-		return 10;
+		return 100;
 	}
 }
